@@ -6,3 +6,29 @@ p.verso {
 p.mote {
     color: red;
 }
+
+
+a.link {
+    color: green;
+    text-decoration: underline;
+}
+
+
+a.link:hover { /* :hover (quando o mouse está sobre o link) */
+    color: yellow;
+    text-decoration: none;
+}
+
+/* 
+
+Pseudo-classes úteis:
+
+:hover (quando o mouse está sobre o link).
+
+:visited (após o link ser clicado).
+
+:active (enquanto o link está sendo clicado).
+
+:focus (quando o link está em foco, útil para acessibilidade
+
+*/
