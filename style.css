@@ -32,3 +32,12 @@ Pseudo-classes úteis:
 :focus (quando o link está em foco, útil para acessibilidade
 
 */
+
+img.imagem {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem se ajuste ao contêiner */
+}
+
+/* border-radius: 50%; /* Faz a imagem ficar circular */
