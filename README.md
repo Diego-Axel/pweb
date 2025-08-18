@@ -9,7 +9,7 @@ O objetivo é documentar e apresentar o progresso e o aprendizado obtidos ao lon
 Este repositório foi organizado de uma maneira específica para facilitar a navegação e a correção das atividades:
 
 -   **Branch `main`:** Esta é a branch principal. Ela não contém o código de nenhuma atividade específica, servindo apenas como uma página de entrada e um índice para todas as "receitas" desenvolvidas.
--   **Branches de Receitas (`receita-XX`):** Cada atividade prática é desenvolvida em sua própria `branch`. O nome da branch segue um padrão como `receita-01`, `receita-02`, etc., para indicar a qual atividade o código se refere.
+-   **Branches de Receitas (`receitaXX`):** Cada atividade prática é desenvolvida em sua própria `branch`. O nome da branch segue um padrão como `receita01`, `receita02`, etc., para indicar a qual atividade o código se refere.
 
 ## 📚 Receitas (Atividades)
 
