@@ -7,16 +7,19 @@
 </head>
 <body>
     <div><button id="botaoClicar">Carregando cervejas...</button></div>
-    <div id="meu amor"></div>
+    <div id="meu-amor"></div>
 
     <script>
-        function carregarDiv(){
-         let div = document.getElementById("meu amor")
-         div.innerHTML = `<h1>Guinness</h1>`
-        }
+        let botao = document.getElementById("botaoClicar")
+        let div = document.getElementById("meu-amor")
 
-      let botao = document.getElementById("botaoClicar")
-      botao.addEventListener("click", carregarDiv)
+        botao.addEventListener("click", () => {
+            if (div.innerHTML === "") {
+                div.innerHTML = '<h1>Guinness</h1>'
+            } else {
+                div.innerHTML = ""
+            }
+        })
     </script>
 </body>
 </html>
