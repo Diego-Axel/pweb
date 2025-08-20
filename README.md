@@ -18,6 +18,7 @@ Abaixo está a lista de todas as receitas desenvolvidas. Para visualizar o códi
 -   **[Receita 01: html básico do básico do básico]** - `branch: receita01`
 -   **[Receita 02: html com cascade style sheets, ou css]** - `branch: receita02`
 -   **[Receita 03: JavaScript básico, no navegador, com funções elementos DOM e eventos]** - `branch: receita03`
+-   **[Receita 04: JavaScript básico 2, Arrays JavaScript, com métodos map() e join() ]** - `branch: receita04`
 
 ### Como Navegar
 
