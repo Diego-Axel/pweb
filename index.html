@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 03</title>
+    <style>
+        #meu-amor {
+            opacity: 1; /* Começa totalmente visível */
+            transition: opacity 0.4s ease-in-out; /* A mágica acontece aqui! */
+            /* Isso diz ao navegador para animar suavemente a propriedade 'opacity'
+               ao longo de 0.4 segundos. */
+        }
+
+        /* Uma classe auxiliar que vamos adicionar/remover com JS */
+        .fade-out {
+            opacity: 0; /* Torna o elemento totalmente transparente */
+        }
+    </style>
 </head>
 <body>
-    
+    <div><button id="botaoClicar">Carregando cervejas...</button></div>
+    <div id="meu-amor"></div>
+
+    <script>
+        let botao = document.getElementById("botaoClicar")
+        let div = document.getElementById("meu-amor")
+
+        botao.addEventListener("click", () => {
+
+            // 1. Inicia o Fade Out adicionando a classe .fade-out
+            div.classList.add('fade-out')
+
+            // 2. Espera a animação de fade out terminar (400ms, o mesmo tempo da transição)
+            setTimeout(() => {
+                // 3. Agora que a div está invisível, mudamos o conteúdo
+                if (div.innerHTML === "") {
+                    div.innerHTML = '<h1>Guinness</h1>';
+                } else {
+                    div.innerHTML = "";
+                }
+                // 4. Inicia o Fade In removendo a classe .fade-out
+                div.classList.remove('fade-out');
+            }, 400)// O tempo precisa ser o mesmo da transição do CSS
+        })
+    </script>
 </body>
 </html>
+
+<!-- RECEITA 03 COMPLETA! -->
