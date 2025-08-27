@@ -7,14 +7,14 @@
 </head>
 <body>
     <body>
-        <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>            
-   </body>   
+        <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>             
+   </body>  
 
    <script>
         let cervejas = ["Guiness", "Desperados", "Becks"]
 
         function transformar(item){
-         return `<h1>${item}</h1>`
+         return `<div>${item}</div>` // <-- ÚNICA LINHA ALTERADA
         }
 
         function carregarDiv(){
@@ -26,7 +26,7 @@
         }
 
         let botao = document.getElementById("botaoCarregar")
-        botao.addEventListener("click", carregarDiv)                 
+        botao.addEventListener("click", carregarDiv)                  
    </script>
 </body>
 </html>
