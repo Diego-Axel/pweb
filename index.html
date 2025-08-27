@@ -6,27 +6,23 @@
     <title>Receita 04</title>
 </head>
 <body>
-    <body>
-        <div id="meu amor"><button id="botaoCarregar">Carregando cervejas...</button></div>             
-   </body>  
+    <div id="meu amor">
+        <button id="botaoCarregar">Carregando cervejas...</button>
+        <button id="botaoOrdenar">Mostrar Cervejas Ordenadas</button>
+    </div>             
 
    <script>
         let cervejas = ["Guiness", "Desperados", "Becks"]
 
-        // 1. A função 'transformar' agora cria uma LINHA de tabela (<tr>) com uma CÉLULA (<td>)
         function transformar(item){
-         // Adicionei um estilo inline simples para as células
          return `<tr><td style="border: 1px solid #ccc; padding: 8px; font-family: sans-serif;">${item}</td></tr>`
         }
 
         function carregarDiv(){
             let div = document.getElementById("meu amor")
             
-            // O map continua criando um array, agora com as linhas da tabela
             let cervejasHtml = cervejas.map(transformar)
 
-            // 2. Montamos a estrutura completa da tabela aqui
-            // Adicionei um estilo inline para a tabela e para o cabeçalho (<th>)
             let tabelaCompleta = `
                 <table style="width: 300px; border-collapse: collapse; margin-top: 10px;">
                     <thead>
@@ -39,13 +35,31 @@
                     </tbody>
                 </table>
             `
-
-            // 3. Inserimos a tabela completa na div
             div.innerHTML = tabelaCompleta
         }
 
         let botao = document.getElementById("botaoCarregar")
-        botao.addEventListener("click", carregarDiv)                  
+        botao.addEventListener("click", carregarDiv)
+
+        // --- INÍCIO DO CÓDIGO ADICIONADO ---
+
+        // 2. Pegamos a referência do novo botão
+        let botaoOrdenar = document.getElementById("botaoOrdenar")
+
+        // 3. Criamos a nova função que será chamada pelo clique
+        function ordenarEExibir(){
+            // 3.1. Ordenamos o array de cervejas. O .sort() modifica o array original.
+            cervejas.sort()
+
+            // 3.2. Reutilizamos a função já existente para exibir a tabela na tela
+            carregarDiv()
+        }
+
+        // 4. Adicionamos o "escutador de eventos" para o novo botão
+        botaoOrdenar.addEventListener("click", ordenarEExibir)
+
+        // --- FIM DO CÓDIGO ADICIONADO ---
+
    </script>
 </body>
 </html>
