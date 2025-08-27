@@ -14,7 +14,8 @@
         let cervejas = ["Guiness", "Desperados", "Becks"]
 
         function transformar(item){
-         return `<div>${item}</div>` // <-- ÚNICA LINHA ALTERADA
+         // Abaixo, a única linha alterada para adicionar o style inline
+         return `<div style="background-color: #f0f0f0; margin: 5px; padding: 10px; border-radius: 5px; font-family: sans-serif;">${item}</div>`
         }
 
         function carregarDiv(){
