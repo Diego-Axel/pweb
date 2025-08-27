@@ -13,17 +13,35 @@
    <script>
         let cervejas = ["Guiness", "Desperados", "Becks"]
 
+        // 1. A função 'transformar' agora cria uma LINHA de tabela (<tr>) com uma CÉLULA (<td>)
         function transformar(item){
-         // Abaixo, a única linha alterada para adicionar o style inline
-         return `<div style="background-color: #f0f0f0; margin: 5px; padding: 10px; border-radius: 5px; font-family: sans-serif;">${item}</div>`
+         // Adicionei um estilo inline simples para as células
+         return `<tr><td style="border: 1px solid #ccc; padding: 8px; font-family: sans-serif;">${item}</td></tr>`
         }
 
         function carregarDiv(){
             let div = document.getElementById("meu amor")
-            // let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`] 
+            
+            // O map continua criando um array, agora com as linhas da tabela
             let cervejasHtml = cervejas.map(transformar)
 
-            div.innerHTML = `${cervejasHtml.join("\n")}`
+            // 2. Montamos a estrutura completa da tabela aqui
+            // Adicionei um estilo inline para a tabela e para o cabeçalho (<th>)
+            let tabelaCompleta = `
+                <table style="width: 300px; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 8px; background-color: #f4f4f4; text-align: left; font-family: sans-serif;">Cervejas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cervejasHtml.join("\n")}
+                    </tbody>
+                </table>
+            `
+
+            // 3. Inserimos a tabela completa na div
+            div.innerHTML = tabelaCompleta
         }
 
         let botao = document.getElementById("botaoCarregar")
