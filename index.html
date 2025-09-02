@@ -6,6 +6,22 @@
     <title>Receitas de Pweb</title>
 </head>
 <body>
-    
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div id="meu amor"></div>
 </body>
+<script>
+    let cervejas = ["Guiness", "Desperados", "Becks"]
+
+    item => `<h1>${item}</h1>`
+
+    //function carregarDiv(){
+    const carregarDiv = () => {
+        const div = document.getElementById("meu amor")
+        const cervejasHtml = cervejas.map(item => `<h1>${item}</h1>`) 
+        div.innerHTML = `${cervejasHtml.join("\n")}`
+    }
+
+    let botao = document.getElementById("botaoCarregar")
+    botao.addEventListener("click", carregarDiv) 
+</script>
 </html>
