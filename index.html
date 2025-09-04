@@ -3,9 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 06</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div>
+        <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
+    <div id="cervejasDiv"></div>
+
+    <script>
+        const cervejas = [
+            {
+                name: "Guiness",
+                alcohol: "10%",
+                style: "Imperial Stout",
+                ibu: "45"
+            },
+            {
+                name: "Desperados",
+                alcohol: "6%",
+                style: "Lager",
+                ibu: "25"
+            },
+            {
+                name: "Becks",
+                alcohol: "5%",
+                style: "Pilsen",
+                ibu: "20"
+            }
+        ]
+
+        const carregarDiv = cs => {
+            const div = document.getElementById("cervejasDiv")
+
+            const linhas = cs.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.alcohol}</td>
+                    <td>${item.style}</td>
+                    <td>${item.ibu}</td>
+                </tr>
+            `)
+
+            const tabelaHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Álcool</th>
+                            <th>Estilo</th>
+                            <th>IBU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${linhas.join("\n")}
+                    </tbody>
+                </table>
+            `
+
+            div.innerHTML = tabelaHtml
+        }
+
+        const botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", () => carregarDiv(cervejas))
+    </script>
 </body>
 </html>
