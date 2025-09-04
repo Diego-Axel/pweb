@@ -3,9 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 05</title>
 </head>
 <body>
-    
+    <div id="meu amor">
+        <a href="#" id="linkCarregar">Carregar Sorvetes</a> |
+        <a href="#" id="linkOrdenar">Mostrar Sorvetes Ordenados</a> |
+        <a href="#" id="linkEmbaralhar">Embaralhar Sorvetes</a>
+    </div>             
+
+    <script>
+        let sorvetes = ["Chocolate", "Morango", "Baunilha", "Pistache", "Flocos", "Napolitano"]
+
+        const transformar = item => 
+            `<tr><td style="border: 1px solid #ccc; padding: 8px; font-family: sans-serif;">${item}</td></tr>`
+
+        const carregarDiv = () => {
+            const div = document.getElementById("meu amor")
+            const sorvetesHtml = sorvetes.map(transformar)
+
+            const tabelaCompleta = `
+                <table style="width: 300px; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 8px; background-color: #f4f4f4; text-align: left; font-family: sans-serif;">Sabores de Sorvete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${sorvetesHtml.join("\n")}
+                    </tbody>
+                </table>
+            `
+            div.innerHTML = `
+                <a href="#" id="linkCarregar">Carregar Sorvetes</a> |
+                <a href="#" id="linkOrdenar">Mostrar Sorvetes Ordenados</a> |
+                <a href="#" id="linkEmbaralhar">Embaralhar Sorvetes</a>
+                ${tabelaCompleta}
+            `
+
+            // Reanexar eventos aos novos links renderizados
+            adicionarEventosLinks()
+        }
+
+        const ordenarEExibir = () => {
+            sorvetes.sort()
+            carregarDiv()
+        }
+
+        const embaralharEExibir = () => {
+            sorvetes.sort(() => Math.random() - 0.5)
+            carregarDiv()
+        }
+
+        // Função para adicionar eventos aos links
+        const adicionarEventosLinks = () => {
+            const linkCarregar = document.getElementById("linkCarregar")
+            const linkOrdenar = document.getElementById("linkOrdenar")
+            const linkEmbaralhar = document.getElementById("linkEmbaralhar")
+
+            linkCarregar.addEventListener("click", e => {
+                e.preventDefault()
+                carregarDiv()
+            })
+
+            linkOrdenar.addEventListener("click", e => {
+                e.preventDefault()
+                ordenarEExibir()
+            })
+
+            linkEmbaralhar.addEventListener("click", e => {
+                e.preventDefault()
+                embaralharEExibir()
+            })
+        }
+
+        // Adiciona os eventos iniciais
+        adicionarEventosLinks()
+    </script>
 </body>
 </html>
+
+<!-- RECEITA 05 COMPLETA! -->
