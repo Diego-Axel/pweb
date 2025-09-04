@@ -6,22 +6,57 @@
     <title>Receita 05</title>
 </head>
 <body>
-    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
-    <div id="meu amor"></div>
+    <div id="meu amor">
+        <button id="botaoCarregar">Carregar Sorvetes</button>
+        <button id="botaoOrdenar">Mostrar Sorvetes Ordenados</button>
+        <button id="botaoEmbaralhar">Embaralhar Sorvetes</button>
+    </div>             
+
+   <script>
+        let sorvetes = ["Chocolate", "Morango", "Baunilha", "Pistache", "Flocos", "Napolitano"]
+
+        const transformar = item => 
+            `<tr><td style="border: 1px solid #ccc; padding: 8px; font-family: sans-serif;">${item}</td></tr>`
+
+        const carregarDiv = () => {
+            const div = document.getElementById("meu amor")
+            const sorvetesHtml = sorvetes.map(transformar)
+
+            const tabelaCompleta = `
+                <table style="width: 300px; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 8px; background-color: #f4f4f4; text-align: left; font-family: sans-serif;">Sabores de Sorvete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${sorvetesHtml.join("\n")}
+                    </tbody>
+                </table>
+            `
+            div.innerHTML = tabelaCompleta
+        }
+
+        const botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", carregarDiv)
+
+        const botaoOrdenar = document.getElementById("botaoOrdenar")
+
+        const ordenarEExibir = () => {
+            sorvetes.sort()
+            carregarDiv()
+        }
+
+        botaoOrdenar.addEventListener("click", ordenarEExibir)
+
+        const botaoEmbaralhar = document.getElementById("botaoEmbaralhar")
+
+        const embaralharEExibir = () => {
+            sorvetes.sort(() => Math.random() - 0.5)
+            carregarDiv()
+        }
+
+        botaoEmbaralhar.addEventListener("click", embaralharEExibir)
+   </script>
 </body>
-<script>
-    let cervejas = ["Guiness", "Desperados", "Becks"]
-
-    // Refatoração: função agora recebe 'cervs' como parâmetro
-    const carregarDiv = (cervs) => {
-        const div = document.getElementById("meu amor")
-        const cervejasHtml = cervs.map(item => `<h1>${item}</h1>`) 
-        div.innerHTML = `${cervejasHtml.join("\n")}`
-    }
-
-    let botao = document.getElementById("botaoCarregar")
-
-    // Passando 'cervejas' como argumento para a função
-    botao.addEventListener("click", () => carregarDiv(cervejas)) 
-</script>
 </html>
