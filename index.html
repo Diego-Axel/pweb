@@ -4,56 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receita 06</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div>
+        <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
     <div id="cervejasDiv"></div>
-</body>
-<script>
-    let cervejas = [
-        {
-            name: "Guiness",  
-            alcohol: "10%"           
-        }, 
-        {
-            name: "Desperados", 
-            alcohol: "6%"             
-        }, 
-        {
-            name: "Becks",
-            alcohol: "5%"             
+
+    <script>
+        const cervejas = [
+            { name: "Guiness", alcohol: "10%" },
+            { name: "Desperados", alcohol: "6%" },
+            { name: "Becks", alcohol: "5%" }
+        ]
+
+        const carregarDiv = cs => {
+            const div = document.getElementById("cervejasDiv")
+
+            const linhas = cs.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.alcohol}</td>
+                </tr>
+            `)
+
+            const tabelaHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Álcool</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${linhas.join("\n")}
+                    </tbody>
+                </table>
+            `
+
+            div.innerHTML = tabelaHtml
         }
-    ]
-    
-    // cs é um array de cervejas
-    const carregarDiv = cs => {
-        const div = document.getElementById("cervejasDiv")
 
-        const linhas = cs.map(item => `
-            <tr>
-                <td style="border: 1px solid #ccc; padding: 8px;">${item.name}</td>
-                <td style="border: 1px solid #ccc; padding: 8px;">${item.alcohol}</td>
-            </tr>
-        `)
-
-        const tabelaHtml = `
-            <table style="border-collapse: collapse; width: 300px; margin-top: 10px; font-family: sans-serif;">
-                <thead>
-                    <tr style="background-color: #f4f4f4;">
-                        <th style="border: 1px solid #ccc; padding: 8px;">Nome</th>
-                        <th style="border: 1px solid #ccc; padding: 8px;">Álcool</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${linhas.join("\n")}
-                </tbody>
-            </table>
-        `
-
-        div.innerHTML = tabelaHtml
-    }
-
-    const botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", () => carregarDiv(cervejas))
-</script>
+        const botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", () => carregarDiv(cervejas))
+    </script>
+</body>
 </html>
