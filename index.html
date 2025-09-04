@@ -12,16 +12,16 @@
 <script>
     let cervejas = ["Guiness", "Desperados", "Becks"]
 
-    item => `<h1>${item}</h1>`
-
-    //function carregarDiv(){
-    const carregarDiv = () => {
+    // Refatoração: função agora recebe 'cervs' como parâmetro
+    const carregarDiv = (cervs) => {
         const div = document.getElementById("meu amor")
-        const cervejasHtml = cervejas.map(item => `<h1>${item}</h1>`) 
+        const cervejasHtml = cervs.map(item => `<h1>${item}</h1>`) 
         div.innerHTML = `${cervejasHtml.join("\n")}`
     }
 
     let botao = document.getElementById("botaoCarregar")
-    botao.addEventListener("click", carregarDiv) 
+
+    // Passando 'cervejas' como argumento para a função
+    botao.addEventListener("click", () => carregarDiv(cervejas)) 
 </script>
 </html>
