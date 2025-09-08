@@ -16,7 +16,7 @@
 
     const carregarDiv = cs => {
         const div = document.getElementById("cervejasDiv")
-        const itensHtml = cs.map( ({name,city}) => `<div>${name} -- ${city}</div>` ) 
+        const itensHtml = cs.map( ({name,city, street}) => `<div> Bebida: ${name} | Cidade: ${city} | Rua: ${street}</div> ` ) 
         div.innerHTML = `${itensHtml.join("\n")}`
     }
 
