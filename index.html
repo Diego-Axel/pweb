@@ -3,9 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 07</title>
+    <style>
+        /* Estilos gerais para a página */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Estilo do botão */
+        #botaoCarregar {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        #botaoCarregar:hover { background-color: #0056b3; }
+        #botaoCarregar:disabled { background-color: #999; cursor: not-allowed; }
+
+        /* Estilos para a tabela */
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden; /* Garante que o border-radius funcione nas bordas da tabela */
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: capitalize; /* Deixa a primeira letra maiúscula */
+        }
+        tr:nth-of-type(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #e9ecef;
+        }
+    </style>
 </head>
 <body>
-    
+    <div><button id="botaoCarregar">Carregar Cervejas em Tabela</button></div>
+    <div id="cervejasDiv"></div>
 </body>
+<script type="module">
+    // 1. Importa a função do arquivo vizinho
+    import criarTabela from './tabela.js';
+
+    let cervejas = [];
+    const botao = document.getElementById("botaoCarregar");
+    const div = document.getElementById("cervejasDiv");
+
+    // 2. A função agora usa a 'criarTabela' para gerar o HTML
+    const carregarDiv = cs => {
+        // Define quais colunas da API você quer mostrar e em qual ordem
+        const colunasDesejadas = ['name', 'brewery_type', 'city', 'state'];
+        div.innerHTML = criarTabela(cs, colunasDesejadas);
+    }
+
+    async function carregarCervejas(){
+        botao.disabled = true;
+        botao.textContent = "Carregando...";
+        div.innerHTML = "";
+
+        try{
+            let res = await fetch("https://api.openbrewerydb.org/v1/breweries/random?size=10");
+            cervejas = await res.json();
+            carregarDiv(cervejas);
+        } catch(err){
+            div.innerHTML = `<p style="color: red;">Ops! Ocorreu um erro.</p>`;
+        } finally {
+            botao.disabled = false;
+            botao.textContent = "Carregar Novas Cervejas";
+        }
+    }
+
+    botao.addEventListener("click", () => carregarCervejas());
+</script>
 </html>
