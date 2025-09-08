@@ -4,33 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receita 07</title>
+    <style>
+        /* 1. Estilos Gerais */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. Estilo do Botão */
+        #botaoCarregar {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-bottom: 20px;
+        }
+
+        #botaoCarregar:hover {
+            background-color: #0056b3;
+        }
+
+        #botaoCarregar:active {
+            transform: scale(0.98);
+        }
+        
+        /* Quando o botão estiver desabilitado (carregando) */
+        #botaoCarregar:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        /* 3. Container dos Cards */
+        #cervejasDiv {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaçamento entre os cards */
+        }
+
+        /* 4. Estilo de cada Card de Cerveja */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #007bff;
+        }
+        
+        .card .nome {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+        }
+
+        .card .local {
+            font-size: 1em;
+            color: #555;
+        }
+        
+        /* 5. Estilo da Mensagem de Erro */
+        .erro {
+            color: #d93025;
+            font-weight: bold;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+    <div><button id="botaoCarregar">Carregar cervejas</button></div>
     <div id="cervejasDiv"></div>
 </body>
 <script>
     let cervejas = []
+    const botao = document.getElementById("botaoCarregar")
+    const div = document.getElementById("cervejasDiv")
 
-    //cs é um array de cervejas
-
+    // cs é um array de cervejas
     const carregarDiv = cs => {
-        const div = document.getElementById("cervejasDiv")
-        const itensHtml = cs.map( ({name,city, street}) => `<div> Bebida: ${name} | Cidade: ${city} | Rua: ${street}</div> ` ) 
-        div.innerHTML = `${itensHtml.join("\n")}`
+        // Agora criamos um HTML mais estruturado para cada item
+        const itensHtml = cs.map( ({name, city, street}) => `
+            <div class="card">
+                <p class="nome">${name}</p>
+                <p class="local">${street || 'Endereço não informado'}, ${city}</p>
+            </div>
+        ` ) 
+        div.innerHTML = itensHtml.join("")
     }
 
     async function carregarCervejas(){
+        // Desabilita o botão e mostra feedback
+        botao.disabled = true;
+        botao.textContent = "Carregando...";
+        div.innerHTML = ""; // Limpa a tela anterior
+
         try{
-            let res = await fetch("https://api.openbrewerydb.org/v1/breweries/random")
+            let res = await fetch("https://api.openbrewerydb.org/v1/breweries/random?size=5") // Buscando 5 para ter mais exemplos
             cervejas = await res.json()
             carregarDiv(cervejas)
         }catch(err){
-            document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+            // Mensagem de erro mais amigável e com estilo
+            div.innerHTML = `<div class="erro">Ops! Ocorreu um erro ao buscar as cervejas. Tente novamente.</div>`
+        } finally {
+            // Reabilita o botão em caso de sucesso ou erro
+            botao.disabled = false;
+            botao.textContent = "Carregar novas cervejas";
         }
     }
 
-    let botao = document.getElementById("botaoCarregar")
     botao.addEventListener("click", () => carregarCervejas() ) 
 </script>
 </html>
