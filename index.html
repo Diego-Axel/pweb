@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receita 07</title>
     <style>
-        /* 1. Estilos Gerais */
+        /* Estilos gerais para a página */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
@@ -17,7 +17,7 @@
             align-items: center;
         }
 
-        /* 2. Estilo do Botão */
+        /* Estilo do botão */
         #botaoCarregar {
             background-color: #007bff;
             color: white;
@@ -26,103 +26,76 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease;
             margin-bottom: 20px;
         }
+        #botaoCarregar:hover { background-color: #0056b3; }
+        #botaoCarregar:disabled { background-color: #999; cursor: not-allowed; }
 
-        #botaoCarregar:hover {
-            background-color: #0056b3;
-        }
-
-        #botaoCarregar:active {
-            transform: scale(0.98);
-        }
-        
-        /* Quando o botão estiver desabilitado (carregando) */
-        #botaoCarregar:disabled {
-            background-color: #999;
-            cursor: not-allowed;
-        }
-
-        /* 3. Container dos Cards */
-        #cervejasDiv {
+        /* Estilos para a tabela */
+        table {
             width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Espaçamento entre os cards */
-        }
-
-        /* 4. Estilo de cada Card de Cerveja */
-        .card {
+            max-width: 800px;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             background-color: white;
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #007bff;
+            overflow: hidden; /* Garante que o border-radius funcione nas bordas da tabela */
         }
-        
-        .card .nome {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin: 0 0 10px 0;
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-
-        .card .local {
-            font-size: 1em;
-            color: #555;
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: capitalize; /* Deixa a primeira letra maiúscula */
         }
-        
-        /* 5. Estilo da Mensagem de Erro */
-        .erro {
-            color: #d93025;
-            font-weight: bold;
-            text-align: center;
+        tr:nth-of-type(even) {
+            background-color: #f8f9fa;
         }
-
+        tr:hover {
+            background-color: #e9ecef;
+        }
     </style>
 </head>
 <body>
-    <div><button id="botaoCarregar">Carregar cervejas</button></div>
+    <div><button id="botaoCarregar">Carregar Cervejas em Tabela</button></div>
     <div id="cervejasDiv"></div>
 </body>
-<script>
-    let cervejas = []
-    const botao = document.getElementById("botaoCarregar")
-    const div = document.getElementById("cervejasDiv")
+<script type="module">
+    // 1. Importa a função do arquivo vizinho
+    import criarTabela from './tabela.js';
 
-    // cs é um array de cervejas
+    let cervejas = [];
+    const botao = document.getElementById("botaoCarregar");
+    const div = document.getElementById("cervejasDiv");
+
+    // 2. A função agora usa a 'criarTabela' para gerar o HTML
     const carregarDiv = cs => {
-        // Agora criamos um HTML mais estruturado para cada item
-        const itensHtml = cs.map( ({name, city, street}) => `
-            <div class="card">
-                <p class="nome">${name}</p>
-                <p class="local">${street || 'Endereço não informado'}, ${city}</p>
-            </div>
-        ` ) 
-        div.innerHTML = itensHtml.join("")
+        // Define quais colunas da API você quer mostrar e em qual ordem
+        const colunasDesejadas = ['name', 'brewery_type', 'city', 'state'];
+        div.innerHTML = criarTabela(cs, colunasDesejadas);
     }
 
     async function carregarCervejas(){
-        // Desabilita o botão e mostra feedback
         botao.disabled = true;
         botao.textContent = "Carregando...";
-        div.innerHTML = ""; // Limpa a tela anterior
+        div.innerHTML = "";
 
         try{
-            let res = await fetch("https://api.openbrewerydb.org/v1/breweries/random?size=5") // Buscando 5 para ter mais exemplos
-            cervejas = await res.json()
-            carregarDiv(cervejas)
-        }catch(err){
-            // Mensagem de erro mais amigável e com estilo
-            div.innerHTML = `<div class="erro">Ops! Ocorreu um erro ao buscar as cervejas. Tente novamente.</div>`
+            let res = await fetch("https://api.openbrewerydb.org/v1/breweries/random?size=10");
+            cervejas = await res.json();
+            carregarDiv(cervejas);
+        } catch(err){
+            div.innerHTML = `<p style="color: red;">Ops! Ocorreu um erro.</p>`;
         } finally {
-            // Reabilita o botão em caso de sucesso ou erro
             botao.disabled = false;
-            botao.textContent = "Carregar novas cervejas";
+            botao.textContent = "Carregar Novas Cervejas";
         }
     }
 
-    botao.addEventListener("click", () => carregarCervejas() ) 
+    botao.addEventListener("click", () => carregarCervejas());
 </script>
 </html>
