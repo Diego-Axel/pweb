@@ -41,3 +41,5 @@ function criarTabela(dados, colunas) {
 
 // Exporta a função para que ela possa ser importada em outros arquivos
 export default criarTabela;
+
+// RECEITA 07 COMPLETA
