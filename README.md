@@ -21,6 +21,8 @@ Abaixo está a lista de todas as receitas desenvolvidas. Para visualizar o códi
 -   **[Receita 04: JavaScript básico 2, Arrays JavaScript, com métodos map() e join() ]** - `branch: receita04`
 -   **[Receita 05: Arrow functions, callback functions e constantes ]** - `branch: receita05`
 -   **[Receita 06: Objetos JSON ]** - `branch: receita06`
+-   **[Receita 07: Função fetch() ]** - `branch: receita07`
+-   **[Receita 08: Promessas ]** - `branch: receita08`
 
 ### Como Navegar
 
