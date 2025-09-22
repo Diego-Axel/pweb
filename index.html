@@ -3,9 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 11</title>
 </head>
 <body>
-    
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+        class Cabecalho extends React.Component {
+            render() {
+                return <h1>Bem-vindo à página de bebidas</h1>;
+            }
+        }
+
+        class Mensagem extends React.Component {
+            render() {
+                return <p>Aqui você encontra uma lista com algumas das melhores cachaças do Brasil.</p>;
+            }
+        }
+
+        class TabelaBebidas extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <h1>{this.props.titulo}</h1>
+                        <table id="tabela" border="1">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Marca</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Havana</td>
+                                    <td>Engenho Anísio Santiago</td>
+                                </tr>
+                                <tr>
+                                    <td>Ypióca</td>
+                                    <td>Ypióca Agroindustrial</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                );
+            }
+        }
+
+        class Rodape extends React.Component {
+            render() {
+                return <footer><small>© 2025 - Minha Tabela de Bebidas</small></footer>;
+            }
+        }
+
+        // Componente principal que organiza tudo
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Cabecalho />
+                        <Mensagem />
+                        <TabelaBebidas titulo="Tabela de Cana" />
+                        <TabelaBebidas titulo="Tabela de Cachaças Famosas" />
+                        <Rodape />
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("app")
+        );
+    </script>
 </body>
 </html>
