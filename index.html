@@ -13,6 +13,18 @@
     <script src="libs/babel.js"></script>
 
     <script type="text/babel">
+        class Cabecalho extends React.Component {
+            render() {
+                return <h1>Bem-vindo à página de bebidas</h1>;
+            }
+        }
+
+        class Mensagem extends React.Component {
+            render() {
+                return <p>Aqui você encontra uma lista com algumas das melhores cachaças do Brasil.</p>;
+            }
+        }
+
         class TabelaBebidas extends React.Component {
             render() {
                 return (
@@ -29,6 +41,10 @@
                                     <td>Havana</td>
                                     <td>Engenho Anísio Santiago</td>
                                 </tr>
+                                <tr>
+                                    <td>Ypióca</td>
+                                    <td>Ypióca Agroindustrial</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -36,31 +52,28 @@
             }
         }
 
-        const TabelaBebidas__ = () => {
-            return (
-                <div>
-                    <h1>Tabela de Bebidas</h1>
-                    <table id="tabela" border="1">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Marca</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Havana</td>
-                                <td>Engenho Anísio Santiago</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            );
-        };
+        class Rodape extends React.Component {
+            render() {
+                return <footer><small>© 2025 - Minha Tabela de Bebidas</small></footer>;
+            }
+        }
+
+        // Componente principal que organiza tudo
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Cabecalho />
+                        <Mensagem />
+                        <TabelaBebidas />
+                        <Rodape />
+                    </div>
+                );
+            }
+        }
 
         ReactDOM.render(
-            <TabelaBebidas />
-            ,
+            <App />,
             document.getElementById("app")
         );
     </script>
