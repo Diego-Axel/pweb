@@ -3,9 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Pweb</title>
+    <title>Receita 10</title>
 </head>
 <body>
-    
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+        // Array fixo de objetos (cachaças)
+        const bebidas = [
+            { nome: "Havana", marca: "Engenho Anísio Santiago" },
+            { nome: "Ypióca", marca: "Ypióca Agroindustrial" },
+            { nome: "Velho Barreiro", marca: "Indústrias Reunidas" },
+            { nome: "51", marca: "Companhia Müller de Bebidas" }
+        ];
+
+        function Cabecalho() {
+            return <h1 style={{ textAlign: "center", color: "#2c3e50" }}>Minha tabela de bebidas</h1>;
+        }
+
+        function TabelaBebidas(props) {
+            const estiloTabela = {
+                borderCollapse: "collapse",
+                width: "80%",
+                margin: "20px auto",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+                borderRadius: "8px",
+                overflow: "hidden"
+            };
+
+            const estiloTh = {
+                backgroundColor: "#27ae60",
+                color: "white",
+                padding: "10px",
+                textAlign: "left"
+            };
+
+            const estiloTd = {
+                borderBottom: "1px solid #ddd",
+                padding: "10px"
+            };
+
+            const estiloTrHover = {
+                backgroundColor: "#f9f9f9"
+            };
+
+            return (
+                <table style={estiloTabela}>
+                    <thead>
+                        <tr>
+                            <th style={estiloTh}>Nome</th>
+                            <th style={estiloTh}>Marca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.dados.map((bebida, index) => (
+                            <tr key={index} style={index % 2 === 0 ? estiloTrHover : {}}>
+                                <td style={estiloTd}>{bebida.nome}</td>
+                                <td style={estiloTd}>{bebida.marca}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            );
+        }
+
+        function App() {
+            const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+            const estiloBotao = {
+                display: "block",
+                margin: "10px auto",
+                padding: "10px 20px",
+                backgroundColor: "#27ae60",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "16px"
+            };
+
+            return (
+                <div>
+                    <Cabecalho />
+                    <button style={estiloBotao} onClick={() => setMostrarTabela(true)}>
+                        Mostrar tabela
+                    </button>
+
+                    {mostrarTabela && <TabelaBebidas dados={bebidas} />}
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById("app")
+        );
+    </script>
 </body>
 </html>
