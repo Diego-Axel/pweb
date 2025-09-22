@@ -29,6 +29,7 @@
             render() {
                 return (
                     <div>
+                        <h1>{this.props.titulo}</h1>
                         <table id="tabela" border="1">
                             <thead>
                                 <tr>
@@ -65,7 +66,8 @@
                     <div>
                         <Cabecalho />
                         <Mensagem />
-                        <TabelaBebidas />
+                        <TabelaBebidas titulo="Tabela de Cana" />
+                        <TabelaBebidas titulo="Tabela de Cachaças Famosas" />
                         <Rodape />
                     </div>
                 );
