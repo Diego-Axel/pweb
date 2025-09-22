@@ -14,15 +14,27 @@
     <script src="libs/babel.js"></script>
 
     <script type="text/babel">
+        function TabelaBebidas() {
+            return (
+                <table id="tabela" border="1">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                    </tr>
+                    <tr>
+                        <td>Havana</td>
+                        <td>Engenho Anísio Santiago</td>
+                    </tr>
+                </table>
+            );
+        }
+
         ReactDOM.render(
             <div id="app">
-                <table id="tabela" border="1">
-                    <tr><th>Nome</th><th>Marca</th></tr>
-                    <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
-                </table>
-            </div>
-            ,
-        document.getElementById("app"))
+                <TabelaBebidas />
+            </div>,
+            document.getElementById("app")
+        );
     </script>
 </body>
 </html>
