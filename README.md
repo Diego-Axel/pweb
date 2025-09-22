@@ -24,6 +24,8 @@ Abaixo está a lista de todas as receitas desenvolvidas. Para visualizar o códi
 -   **[Receita 07: Função fetch() ]** - `branch: receita07`
 -   **[Receita 08: Promessas ]** - `branch: receita08`
 -   **[Receita 09: Introdução ao React ]** - `branch: receita09`
+-   **[Receita 10: Introdução ao JSX e componentes funcionais ]** - `branch: receita10`
+-   **[Receita 11: Componentes React com classes e mais detalhes JSX ]** - `branch: receita11`
 
 ### Como Navegar
 
