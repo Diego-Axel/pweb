@@ -26,6 +26,8 @@ Abaixo está a lista de todas as receitas desenvolvidas. Para visualizar o códi
 -   **[Receita 09: Introdução ao React ]** - `branch: receita09`
 -   **[Receita 10: Introdução ao JSX e componentes funcionais ]** - `branch: receita10`
 -   **[Receita 11: Componentes React com classes e mais detalhes JSX ]** - `branch: receita11`
+-   **[Receita 12: Propriedades de componentes e desestruturação ]** - `branch: receita12`
+-   **[Receita 13: Sistemas web com nextjs, do zero ]** - `branch: receita13`
 
 ### Como Navegar
 
