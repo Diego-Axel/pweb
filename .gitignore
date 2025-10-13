@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Next.js build output
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac + VSCode
+.DS_Store
+.vscode/
+
+# dotenv
+.env
+
+# lockfiles (optionally ignore global user-level lockfiles if present)
+# Remove if you want lockfiles committed for this project
+package-lock.json
+
+# Optional: OS files
+Thumbs.db
+
+# Optional: local environment overrides
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
