@@ -1,0 +1,48 @@
+p.verso {
+    color: blue;
+}
+
+
+p.mote {
+    color: red;
+}
+
+
+a.link {
+    color: green;
+    text-decoration: underline;
+}
+
+
+a.link:hover { /* :hover (quando o mouse está sobre o link) */
+    color: yellow;
+    text-decoration: none;
+}
+
+/* 
+
+Pseudo-classes úteis:
+
+:hover (quando o mouse está sobre o link).
+
+:visited (após o link ser clicado).
+
+:active (enquanto o link está sendo clicado).
+
+:focus (quando o link está em foco, útil para acessibilidade
+
+*/
+
+img.imagem {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Garante que a imagem se ajuste ao contêiner */
+}
+
+/* border-radius: 50%; /* Faz a imagem ficar circular */
+
+.poeta img {
+    border-radius: 50%;
+}
+
+/* RECEITA 02 COMPLETA */
